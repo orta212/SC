@@ -1,8 +1,10 @@
 ## **Repositori ini dibuat untuk memenuhi penilaian tengah semester matakuliah pemrograman mobile**  
-Nama : Orta Yamaesa  
-Nim : 312210147  
+Nama : Riska Hidayah Putri 
+Nim : 312210102  
 Kelas : TI.22.B1  
 Mata Kuliah : Pemrograman Mobile  
+  
+  
 **Tugas : Membuat tombol yang setiap diklik dapat bertambah angkanya, namun dengan urutan angka fibonacci, lalu lengkapi dengan fitur toast**  
 berikut adalah link video aplikasi yang di jalankan (dijalankan pada device menggunakan usb debugging) : [tonton video](https://www.youtube.com/shorts/Fj5d-t8HxHg)  
 <br>
@@ -11,6 +13,8 @@ Source Code:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -23,8 +27,8 @@ Source Code:
 
         <EditText
             android:id="@+id/maxNumber"
-            android:layout_width="94dp"
-            android:layout_height="55dp"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
@@ -38,13 +42,14 @@ Source Code:
             android:id="@+id/buttonMax"
             android:layout_width="143dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="Set Maximum" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="414dp"
+        android:layout_height="438dp"
         android:layout_below="@id/numberLayout"
         android:background="#eeeeee"
         android:clipToPadding="false"
@@ -52,13 +57,24 @@ Source Code:
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textNama"
-            android:layout_width="200dp"
+            android:id="@+id/textNama2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="clip_horizontal|center"
             android:layout_marginTop="-40dp"
             android:layout_marginBottom="30dp"
-            android:text="Orta Yamaesa 312210147"
+            android:text="@string/nama"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_horizontal|center"
+            android:layout_marginTop="-40dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/nim"
             android:textAlignment="center"
             android:textSize="24sp" />
 
@@ -104,42 +120,56 @@ Source Code:
                 android:layout_weight="1"
                 android:text="0"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="165dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/linear"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/buttonCount"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="3dp"
-            android:hapticFeedbackEnabled="false"
-            android:text="HITUNG"
-            android:textAlignment="center"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/buttonReset"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="3dp"
-            android:text="RESET"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/buttonCount"
+                android:layout_width="157dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="10dp"
+                android:hapticFeedbackEnabled="false"
+                android:text="HITUNG"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonReset"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="RESET"
+                android:textAlignment="center"
+                android:textStyle="bold"
+
+                />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/buttonToast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="Tampilkan Toast"
             android:textAlignment="center"
             android:textStyle="bold" />
@@ -160,7 +190,36 @@ Penjelasan :
    * linear layout 1 :button hitung + button reset
    * linear layout 2 : button toast  
 
+* colors.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="yellow">#F2EF1C</color>
+    <color name="green">#1CF234</color>
+    <color name="red">#F50A0A</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <integer-array name="warna_background_fibo">
+        <item>@color/teal_200</item>
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+    </integer-array>
+</resources>
+```
 
+* strings.xml
+ ```xml 
+  <resources>
+    <string name="app_name">My Apllication</string>
+    <string name="nama">Riska Hidayah Putri</string>
+    <string name="nim">312210102</string>
+</resources>
+```
 
 * MainActivity.Java :  
 
